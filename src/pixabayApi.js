@@ -1,7 +1,7 @@
 const ENDPOINT = 'https://pixabay.com/api/';
 const options = {
     'key': '33929638-3d09c2b606ca8b58d00360aed',
-    'q': `${this.searchQuery}`,
+    'q': `${searchQuery}`,
     'image_type': 'photo',
     'orientation': 'horizontal',
     'safesearch': 'true'
@@ -29,5 +29,6 @@ getPhotoes() {
         this.page = 1;
       }
 }
+
 
 
