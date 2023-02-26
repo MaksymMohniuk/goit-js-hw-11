@@ -1,21 +1,26 @@
-const ENDPOINT = 'https://pixabay.com/api/';
-const options = {
-    'key': '33929638-3d09c2b606ca8b58d00360aed',
-    'q': `${searchQuery}`,
-    'image_type': 'photo',
-    'orientation': 'horizontal',
-    'safesearch': 'true'
-};
+import axios from 'axios';
 
 export default class PixabayAPI {
+    #ENDPOINT = 'https://pixabay.com/api/';
+    #KEY = '33929638-3d09c2b606ca8b58d00360aed'
     constructor() {
         this.page = 1;
         this.searchQuery = '';
+        this.perPage = 40;
     }
 
 getPhotoes() {
-    const URL = `${ENDPOINT}?q={$this.searchQuery}&per_page=40&page=${this.page}`;
-    return fetch(URL, options).then(
+    return axios.get(`${this.#ENDPOINT}`, {
+        params: {
+            key: this.#KEY,
+            q: this.searchQuery,
+            image_type: 'photo',
+            orientation: 'horizontal',
+            safesearch: 'true',
+            perPage: this.perPage,
+            page: this.page
+        }
+    }).then(
         (response) => response.json()
     ).then(
         ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {this.nextPage()
