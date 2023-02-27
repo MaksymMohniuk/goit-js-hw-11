@@ -4,7 +4,7 @@ import LoadMoreBtn from './loadMoreBtn'
 
 const form = document.getElementById("search-form");
 const gallery = document.querySelector('.gallery');
-const PixabayAPI = new PixabayAPI();
+const newPixabayAPI = new PixabayAPI();
 const loadMoreBtn = new LoadMoreBtn({
     selector: "#loadMore",
     isHidden: true,
@@ -19,9 +19,9 @@ function onSubmit(event) {
   
     const value = form.event.target.value.trim();
   
-    PixabayAPI.searchQuery = value;
+    newPixabayAPI.searchQuery = value;
   
-    PixabayAPI.resetPage();
+    newPixabayAPI.resetPage();
     clearPhotoesList();
     loadMoreBtn.show();
     fetchPhotoes().finally(() => form.reset());
@@ -30,7 +30,7 @@ function onSubmit(event) {
   function fetchPhotoes() {
     loadMoreBtn.disable();
   
-    return PixabayAPI
+    return newPixabayAPI
       .getPhotoes()
       .then((hits) => {
         if (articles.length === 0) throw new Error("Sorry, there are no images matching your search query. Please try again.");
