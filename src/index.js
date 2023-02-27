@@ -17,7 +17,7 @@ loadMoreBtn.button.addEventListener("click", fetchPhotoes);
 function onSubmit(event) {
     event.preventDefault();
   
-    const value = form.event.target.value.trim();
+    const value = event.target.value.trim();
   
     newPixabayAPI.searchQuery = value;
   
